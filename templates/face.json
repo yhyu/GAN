@@ -1,0 +1,107 @@
+{
+    "image_shape": [36, 36, 3],
+    "encode_size": 256,
+    "generator": {
+        "optimizer": {
+            "name": "Adam",
+            "learning_rate": 0.0001
+        },
+        "layers":[
+            {
+                "layer": "Dense",
+                "units": 2304,
+                "activation": "elu"
+            },
+            {
+                "layer": "Reshape",
+                "shape": [3, 3, 256]
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 128,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 64,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same",
+                "strides": 3
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 32,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same",
+                "strides": 2
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 16,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 3,
+                "kernel": [3, 3],
+                "padding": "same",
+                "strides": 2
+            }
+        ]
+    },
+    "discriminator": {
+        "optimizer": {
+            "name": "Adam",
+            "learning_rate": 0.0001
+        },
+        "layers": [
+            {
+                "layer": "Conv2D",
+                "filters": 32,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "MaxPooling2D",
+                "size": [2, 2]
+            },
+            {
+                "layer": "Conv2D",
+                "filters": 64,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "MaxPooling2D",
+                "size": [2, 2]
+            },
+            {
+                "layer": "Conv2D",
+                "filters": 128,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "MaxPooling2D",
+                "size": [2, 2]
+            },
+            {
+                "layer": "Flatten"
+            },
+            {
+                "layer": "Dense",
+                "units": 256,
+                "activation": "sigmoid"
+            }
+        ]
+    }
+}

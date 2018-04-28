@@ -1,0 +1,131 @@
+{
+    "image_shape": [28, 28, 1],
+    "encode_size": 2,
+    "generator": {
+        "optimizer": {
+            "name": "Adam",
+            "learning_rate": 0.0001
+        },
+        "layers": [
+            {
+                "layer": "Dense",
+                "units": 512,
+                "activation": "elu"
+            },
+            {
+                "layer": "Reshape",
+                "shape": [1, 1, 512]
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 256,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same",
+                "strides": 3
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 128,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 64,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same",
+                "strides": 2
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 32,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same",
+                "strides": 2
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 16,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "valid"
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 8,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "Conv2DTranspose",
+                "filters": 1,
+                "kernel": [3, 3],
+                "padding": "same",
+                "strides": 2
+            }
+        ]
+    },
+    "discriminator": {
+        "optimizer": {
+            "name": "Adam",
+            "learning_rate": 0.0001
+        },
+        "layers": [
+            {
+                "layer": "Conv2D",
+                "filters": 32,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "AveragePooling2D",
+                "size": [2, 2]
+            },
+            {
+                "layer": "BatchNormalization"
+            },
+            {
+                "layer": "Conv2D",
+                "filters": 64,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "AveragePooling2D",
+                "size": [2, 2]
+            },
+            {
+                "layer": "BatchNormalization"
+            },
+            {
+                "layer": "Conv2D",
+                "filters": 128,
+                "kernel": [3, 3],
+                "activation": "elu",
+                "padding": "same"
+            },
+            {
+                "layer": "AveragePooling2D",
+                "size": [2, 2]
+            },
+            {
+                "layer": "Flatten"
+            },
+            {
+                "layer": "BatchNormalization"
+            },
+            {
+                "layer": "Dense",
+                "units": 256,
+                "activation": "tanh"
+            }
+        ]
+    }
+}
