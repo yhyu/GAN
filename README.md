@@ -2,15 +2,15 @@
 
 This repository is to implement an easy way to build your own GAN just by editing configuration file.
 
-There are some examples in [template](./template) folder, including MNIST, face generation.
+There are some examples in [templates](templates) folder, including MNIST, face generation.
 
 ### Prerequisites:
 [Keras](https://keras.io), [TensorFlow](https://www.tensorflow.org)
 
 ### How to use?
 
-Takes generate MNIST as an example, the NN is defined in [mnist.json](./template/mnist.json).
- (Please refer to the [template file format](template/README.md).)
+Takes generate MNIST as an example, the NN is defined in [mnist.json](./templates/mnist.json).
+ (Please refer to the [template file format](templates/README.md).)
 
 ```
 import tensorflow as tf
